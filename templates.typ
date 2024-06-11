@@ -165,3 +165,19 @@
 
   doc
 }
+
+#let clean-numbering(..schemes) = {
+  (..nums) => {
+    let (section, ..subsections) = nums.pos()
+    let (section_scheme, ..subschemes) = schemes.pos()
+
+    if subsections.len() == 0 {
+      numbering(section_scheme, section)
+    } else if subschemes.len() == 0 {
+      numbering(section_scheme, ..nums.pos())
+    }
+    else {
+      clean-numbering(..subschemes)(..subsections)
+    }
+  }
+}
