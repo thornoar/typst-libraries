@@ -18,6 +18,8 @@
 // Math
 #let circ = math.circle.stroked.tiny
 #let hs = h(5pt)
+#let lle = math.lt.eq.slant
+#let gge = math.gt.eq.slant
 
 // Templates
 #let attention(
