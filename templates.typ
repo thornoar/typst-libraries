@@ -49,112 +49,6 @@
   doc
 }
 
-#let diploma(
-  barwidth: 38mm,
-  barfill: white,
-  logo: none,
-  logovstep: auto,
-  // logowidth: auto,
-  labelfont: "FreeSans",
-  palesize: 100pt,
-  palefill: auto,
-  palevstep: auto,
-  palehstep: 0mm,
-  palelabel: "DIPLOMA",
-  labelsize: 43pt,
-  labelfill: auto,
-  labelvstep: auto,
-  label: none,
-  orgsize: auto,
-  org: [],
-  titlesize: 30pt,
-  title: [],
-  body: [],
-  footsize: auto,
-  foot: []
-) = {
-  // if (logowidth == auto) { logowidth = 0.8*barwidth }
-  if (logo != none and logovstep == auto) { logovstep = (barwidth - logo.width)/2 }
-  if (palefill == auto) { palefill = if (barfill != none) { barfill.lighten(20%) } else { none } }
-  if (palevstep == auto) { palevstep = logovstep }
-  if (labelvstep == auto) { labelvstep = palevstep }
-
-  context {
-    assert(page.margin != auto, message: "please specify explicit margins")
-    place(
-      left,
-      dx: -page.margin.left,
-      dy: -page.margin.top,
-      rect(
-        fill: barfill,
-        width: barwidth,
-        height: 100% + page.margin.top + page.margin.bottom
-      )
-    )
-    if (logo != none) {
-      place(
-        left+top,
-        dx: -page.margin.left + (barwidth - logo.width)/2,
-        dy: -page.margin.top + logovstep,
-        logo
-      )
-    }
-
-    let vlabel(center, fontsize, vstep, fill, str) = {
-      let content = rotate(
-        -90deg,
-        text(str, size: fontsize, stroke: fill, fill: fill, font: labelfont)
-      )
-      let size = measure(content)
-      let dx = if center {
-        (barwidth - size.width)/2 - page.margin.left
-      } else {
-        -size.width/2 - page.margin.left - size.height/2 + barwidth + palehstep
-      }
-      let dy = (size.height - size.width)/2 + page.margin.bottom - vstep
-      place(left+bottom, dx: dx, dy: dy, content)
-    }
-
-    vlabel(false, palesize, palevstep, palefill, palelabel)
-    vlabel(true, labelsize, labelvstep, if (labelfill == auto) { page.fill } else { labelfill }, label)
-
-    if (palehstep > -1mm) {
-      place(
-        left,
-        dx: -page.margin.left + barwidth,
-        dy: -page.margin.top,
-        rect(
-          stroke: none,
-          fill: if (page.fill == none) { white } else { page.fill },
-          width: 1cm,
-          height: 100% + page.margin.top + page.margin.bottom
-        )
-      )
-    }
-
-    {
-      set text(stroke: barfill, fill: barfill, size: if (orgsize == auto) { text.size } else { orgsize })
-      org
-    }
-    linebreak()
-    linebreak()
-    {
-      set text(size: titlesize)
-      title
-    }
-    linebreak()
-    linebreak()
-
-    body
-
-    if (foot != none) {
-      v(1fr)
-      set text(size: if (footsize == auto) { text.size } else { footsize })
-      foot
-    }
-  }
-}
-
 // Templates
 
 #let title(
@@ -277,6 +171,111 @@
   }
 
   doc
+}
+
+#let diploma(
+  barwidth: 38mm,
+  barfill: white,
+  logo: none,
+  logovstep: auto,
+  // logowidth: auto,
+  labelfont: "FreeSans",
+  palesize: 100pt,
+  palefill: auto,
+  palevstep: auto,
+  palehstep: 0mm,
+  palelabel: "DIPLOMA",
+  labelsize: 43pt,
+  labelfill: auto,
+  labelvstep: auto,
+  label: none,
+  orgsize: auto,
+  org: [],
+  titlesize: 30pt,
+  title: [],
+  body: [],
+  footsize: auto,
+  foot: []
+) = {
+  if (logo != none and logovstep == auto) { logovstep = (barwidth - logo.width)/2 }
+  if (palefill == auto) { palefill = if (barfill != none) { barfill.lighten(20%) } else { none } }
+  if (palevstep == auto) { palevstep = logovstep }
+  if (labelvstep == auto) { labelvstep = palevstep }
+
+  context {
+    assert(page.margin != auto, message: "please specify explicit margins")
+    place(
+      left,
+      dx: -page.margin.left,
+      dy: -page.margin.top,
+      rect(
+        fill: barfill,
+        width: barwidth,
+        height: 100% + page.margin.top + page.margin.bottom
+      )
+    )
+    if (logo != none) {
+      place(
+        left+top,
+        dx: -page.margin.left + (barwidth - logo.width)/2,
+        dy: -page.margin.top + logovstep,
+        logo
+      )
+    }
+
+    let vlabel(center, fontsize, vstep, fill, str) = {
+      let content = rotate(
+        -90deg,
+        text(str, size: fontsize, stroke: fill, fill: fill, font: labelfont)
+      )
+      let size = measure(content)
+      let dx = if center {
+        (barwidth - size.width)/2 - page.margin.left
+      } else {
+        -size.width/2 - page.margin.left - size.height/2 + barwidth + palehstep
+      }
+      let dy = (size.height - size.width)/2 + page.margin.bottom - vstep
+      place(left+bottom, dx: dx, dy: dy, content)
+    }
+
+    vlabel(false, palesize, palevstep, palefill, palelabel)
+    vlabel(true, labelsize, labelvstep, if (labelfill == auto) { page.fill } else { labelfill }, label)
+
+    if (palehstep > -1mm) {
+      place(
+        left,
+        dx: -page.margin.left + barwidth,
+        dy: -page.margin.top,
+        rect(
+          stroke: none,
+          fill: if (page.fill == none) { white } else { page.fill },
+          width: 1cm,
+          height: 100% + page.margin.top + page.margin.bottom
+        )
+      )
+    }
+
+    {
+      set text(stroke: barfill, fill: barfill, size: if (orgsize == auto) { text.size } else { orgsize })
+      org
+    }
+    linebreak()
+    linebreak()
+    {
+      set text(size: titlesize)
+      title
+    }
+    linebreak()
+    linebreak()
+
+    body
+
+    if (foot != none) {
+      v(1fr)
+      set text(size: if (footsize == auto) { text.size } else { footsize })
+      foot
+    }
+  }
 }
 
 #let clean-numbering(..schemes) = {
