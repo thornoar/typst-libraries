@@ -77,6 +77,18 @@
 
 #let pf = proofstyle("proof", "Proof")
 
+// #let rdef = plainstyle("definition", "Определение")
+// #let rexam = plainstyle("example", "Пример")
+// #let rexam = plainstyle("example", "Упражнение")
+//
+// #let rth = statestyle("theorem", "Теорема")
+// #let rlm = statestyle("lemma", "Лемма")
+// #let rprop = statestyle("proposition", "Предложение")
+// #let rcor = statestyle("corollary", "Следствие")
+// #let rprb = statestyle("problem", "Задача")
+//
+// #let rpf = proofstyle("proof", "Доказательство")
+
 #let theorem = doc => {
   show: thmrules.with(qed-symbol: $square.filled.medium$)
   show link: underline
