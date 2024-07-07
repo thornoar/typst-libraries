@@ -2,6 +2,8 @@
 
 #import "@preview/ctheorems:1.1.2": thmrules, thmenv, thmproof
 
+// Basic function
+
 #let thmstyle(
   identifier,
   head,
@@ -47,6 +49,8 @@
   )
 }
 
+// Shorthands
+
 #let plainstyle(identifier, head) = thmstyle(identifier, head)
 #let statestyle(identifier, head) = thmstyle(identifier, head, bodyfmt: emph)
 #let proofstyle(identifier, head) = thmproof(
@@ -65,7 +69,10 @@
   ..args
 )
 
+// Further shorthands
+
 #let def = plainstyle("definition", "Definition")
+#let nota = plainstyle("notation", "Notation")
 #let exam = plainstyle("example", "Example")
 #let exer = plainstyle("exercise", "Exercise")
 
@@ -77,17 +84,22 @@
 
 #let pf = proofstyle("proof", "Proof")
 
-// #let rdef = plainstyle("definition", "Определение")
-// #let rexam = plainstyle("example", "Пример")
-// #let rexam = plainstyle("example", "Упражнение")
-//
-// #let rth = statestyle("theorem", "Теорема")
-// #let rlm = statestyle("lemma", "Лемма")
-// #let rprop = statestyle("proposition", "Предложение")
-// #let rcor = statestyle("corollary", "Следствие")
-// #let rprb = statestyle("problem", "Задача")
-//
-// #let rpf = proofstyle("proof", "Доказательство")
+// Russian versions
+
+#let rdef = plainstyle("definition", "Определение")
+#let rnota = plainstyle("notation", "Нотация")
+#let rexam = plainstyle("example", "Пример")
+#let rexer = plainstyle("example", "Упражнение")
+
+#let rth = statestyle("theorem", "Теорема")
+#let rlm = statestyle("lemma", "Лемма")
+#let rprop = statestyle("proposition", "Предложение")
+#let rcor = statestyle("corollary", "Следствие")
+#let rprb = statestyle("problem", "Задача")
+
+#let rpf = proofstyle("proof", "Доказательство")
+
+// Main show rule
 
 #let theorem = doc => {
   show: thmrules.with(qed-symbol: $square.filled.medium$)

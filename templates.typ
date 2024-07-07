@@ -23,6 +23,10 @@
     counter(math.equation).update(0)
     it
   }
+  show heading: it => {
+    it
+    v(0.1cm)
+  }
   set math.equation(numbering: n => {
     let h1 = counter(heading).get().first()
     numbering("(1.1.1)", h1, n)
@@ -32,6 +36,11 @@
     ($>=$, math.gt.eq.slant),
     ($<=$, math.lt.eq.slant)
   )
+
+  show outline.entry.where(level: 1): it => {
+    v(1em, weak: true)
+    strong(it)
+  }
 
   show ref: underline
   show link: it => {
@@ -145,10 +154,6 @@
   context {
     let hascontents = false
     if index and (query(heading).len() > 0) {
-      show outline.entry.where(level: 1): it => {
-        v(1em, weak: true)
-        strong(it)
-      }
       outline(title: indextitle, target: heading)
       hascontents = true
     }
@@ -178,7 +183,6 @@
   barfill: white,
   logo: none,
   logovstep: auto,
-  // logowidth: auto,
   labelfont: "FreeSans",
   palesize: 100pt,
   palefill: auto,
