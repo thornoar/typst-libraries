@@ -51,11 +51,12 @@
 
 // Shorthands
 
-#let plainstyle(identifier, head) = thmstyle(identifier, head)
-#let statestyle(identifier, head) = thmstyle(identifier, head, bodyfmt: emph)
-#let proofstyle(identifier, head) = thmproof(
+#let plainstyle(identifier, head, ..args) = thmstyle(identifier, head, ..args)
+#let statestyle(identifier, head, ..args) = thmstyle(identifier, head, bodyfmt: emph, ..args)
+#let proofstyle(identifier, head, ..args) = thmproof(
   identifier,
   head,
+  ..args,
   inset: (left: 10pt, bottom: 2pt),
   radius: 0pt,
   stroke: (left: black),
@@ -89,7 +90,7 @@
 #let rdef = plainstyle("definition", "Определение")
 #let rnota = plainstyle("notation", "Нотация")
 #let rexam = plainstyle("example", "Пример")
-#let rexer = plainstyle("example", "Упражнение")
+#let rexer = plainstyle("exercise", "Упражнение")
 
 #let rth = statestyle("theorem", "Теорема")
 #let rlm = statestyle("lemma", "Лемма")
