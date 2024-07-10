@@ -51,11 +51,23 @@
 
 // Shorthands
 
-#let plainstyle(identifier, head, ..args) = thmstyle(identifier, head, ..args)
-#let statestyle(identifier, head, ..args) = thmstyle(identifier, head, bodyfmt: emph, ..args)
-#let proofstyle(identifier, head, ..args) = thmproof(
+#let plainstyle(identifier, head, breakable: false, ..args) = thmstyle(
   identifier,
   head,
+  breakable: breakable,
+  ..args
+)
+#let statestyle(identifier, head, breakable: false, ..args) = thmstyle(
+  identifier,
+  head,
+  breakable: breakable,
+  bodyfmt: emph,
+  ..args
+)
+#let proofstyle(identifier, head, breakable: true, ..args) = thmproof(
+  identifier,
+  head,
+  breakable: breakable,
   ..args,
   inset: (left: 10pt, bottom: 2pt),
   radius: 0pt,
