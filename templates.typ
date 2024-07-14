@@ -297,3 +297,83 @@
     }
   }
 }
+
+#let attention(
+  body,
+  title: [*ATTENTION*],
+  font: auto,
+  color: red,
+  stroke: 0.5pt,
+  centering: false
+) = context {
+  let blockinset = text.size + 2pt
+  let blockfont = font
+  if (font == auto) {
+    blockfont = "Noto Sans"
+  } else if (font == none) {
+    blockfont = text.font
+  }
+  let titleshift = text.size / 2
+  let titlemargin = text.size / 6
+  let res = block(
+    above: 2em,
+    stroke: stroke + color,
+    inset: blockinset,
+    {
+      set text(font: blockfont, fill: color)
+      place(
+        top + left,
+        dy: -titleshift - blockinset,
+        dx: titleshift - blockinset,
+        block(fill: white, inset: titlemargin, strong(upper(title)))
+      )
+      body
+    }
+  )
+  if centering {
+    stack(dir: ltr, spacing: 1fr, [], res, [])
+  } else {
+    res
+  }
+}
+
+#let skew(angle, vscale: 1) = content => {
+  let (a,b,c,d)= (1,vscale*calc.tan(angle),0,vscale)
+  let E = (a + d)/2
+  let F = (a - d)/2
+  let G = (b + c)/2
+  let H = (c - b)/2
+  let Q = calc.sqrt(E*E + H*H)
+  let R = calc.sqrt(F*F + G*G)
+  let sx = Q + R
+  let sy = Q - R
+  let a1 = calc.atan2(F,G)
+  let a2 = calc.atan2(E,H)
+  let theta = (a2 - a1) /2
+  let phi = (a2 + a1)/2
+
+  set rotate(origin: bottom+center)
+  set scale(origin: bottom+center)
+
+  rotate(phi,scale(x: sx*100%, y: sy*100%,rotate(theta,content)))
+}
+
+#let namedgaps(
+  names,
+  length: 10em,
+  stroke: 0.5pt,
+  row-gutter: 1em,
+  column-gutter: .5em,
+  shift: auto
+) = {
+  if shift == auto { shift = row-gutter / 5 }
+  let gap = align(bottom, move(dy: shift, line(length: length, stroke: stroke)))
+  grid(
+    columns: 2,
+    rows: names.len(),
+    row-gutter: row-gutter,
+    column-gutter: column-gutter,
+    align: (right, left),
+    ..names.map(name => (name+[:], gap)).flatten()
+  )
+}
