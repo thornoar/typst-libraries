@@ -325,7 +325,7 @@
         top + left,
         dy: -titleshift - blockinset,
         dx: titleshift - blockinset,
-        block(fill: white, inset: titlemargin, strong(upper(title)))
+        block(fill: white, inset: titlemargin, strong(title))
       )
       body
     }

@@ -29,12 +29,12 @@
     title = titlefmt(title)
     body = bodyfmt(body)
 
-    block(
+    align(left, block(
       width: 100%,
       breakable: true,
       ..blockargs.named(),
       [#title#name#separator#body]
-    )
+    ))
   }
 
   return thmenv(
