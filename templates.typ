@@ -1,6 +1,6 @@
 #import "@preview/wrap-it:0.1.0": *
 #import "@preview/wordometer:0.1.2": total-words, word-count
-#import "@preview/equate:0.1.0": equate
+#import "@preview/equate:0.2.1": equate
 #import "@preview/quick-maths:0.1.0": shorthands
 
 // Layout
