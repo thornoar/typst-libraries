@@ -88,12 +88,13 @@
 #let nota = plainstyle("notation", "Notation")
 #let exam = plainstyle("example", "Example")
 #let exer = plainstyle("exercise", "Exercise")
+#let note = plainstyle("note", "Note")
 
 #let th = statestyle("theorem", "Theorem")
 #let lm = statestyle("lemma", "Lemma")
 #let prop = statestyle("proposition", "Proposition")
-#let cor = statestyle("corollary", "Corollary")
 #let prb = statestyle("problem", "Problem")
+#let cor(base: "heading") = statestyle("corollary", "Corollary", base: base)
 
 #let pf = proofstyle("proof", "Proof")
 
@@ -103,12 +104,13 @@
 #let rnota = plainstyle("notation", "Нотация")
 #let rexam = plainstyle("example", "Пример")
 #let rexer = plainstyle("exercise", "Упражнение")
+#let rnote = plainstyle("note", "Замечание")
 
 #let rth = statestyle("theorem", "Теорема")
 #let rlm = statestyle("lemma", "Лемма")
 #let rprop = statestyle("proposition", "Предложение")
-#let rcor = statestyle("corollary", "Следствие")
 #let rprb = statestyle("problem", "Задача")
+#let rcor(base: "heading") = statestyle("corollary", "Следствие", base: base)
 
 #let rpf = proofstyle("proof", "Доказательство")
 

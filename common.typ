@@ -1,5 +1,5 @@
 // Positioning
-#let centering(shallow: true) = content => {
+#let centering(shallow: true, content) = {
   if shallow { stack(dir: ltr, spacing: 1fr, [], content, []) } else { align(center)[ #content ] }
 }
 #let mfrac(a, b) = move(a, dy: -0.2em) + "/" + move(b, dy: 0.2em, dx: -0.1em)
