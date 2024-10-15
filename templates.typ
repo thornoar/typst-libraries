@@ -60,6 +60,82 @@
 
 // Templates
 
+#let physics-preamble(part, due) = doc => {
+  import "@preview/equate:0.2.1": equate
+  set page(
+    "a4",
+    margin: (x:.5in, top: 0.8in, bottom: 0.5in),
+    header: box(
+      stroke: (left: none, right: none, top: none, bottom: .7pt),
+      inset: (bottom: 5pt),
+      [ PHYS1312 Homework, #part #h(1fr) Roman Maksimovich ]
+    ),
+    numbering: "1"
+  )
+  set text(size: 12pt)
+
+  show: equate.with(breakable: true, sub-numbering: true, number-mode: "label")
+  set math.equation(numbering: "(1.1)")
+
+  table(
+    columns: 1,
+    align: (left),
+    inset: (left: 8pt, bottom: 3pt),
+    stroke: (left: 1pt, top: none, right: none, bottom: none),
+    table.cell(
+      inset: (left: 8pt, bottom: 8pt),
+      { text(20pt, "PHYS1312 Homework, " + part); h(1fr) }
+    ),
+    table.hline(),
+    text(14pt, "Roman Maksimovich, ID: 21098878"),
+    text(14pt, "Due date: " + due)
+  )
+  v(10pt)
+
+  doc
+}
+
+#let physics-problem(number) = underline(strong({
+  text("Problem " + number + ".");
+  h(3pt)
+}))
+
+#let math-preamble(part, due) = doc => {
+  set page(
+    "a4",
+    margin: (x:.5in, top: 0.8in, bottom: 0.5in),
+    header: box(
+      stroke: (left: none, right: none, top: none, bottom: .7pt),
+      inset: (bottom: 5pt),
+      [ MATH1023 Homework, #part #h(1fr) Roman Maksimovich ]
+    ),
+    numbering: "1"
+  )
+  set text(size: 12pt)
+
+  table(
+    columns: 1,
+    align: (left),
+    inset: (left: 8pt, bottom: 3pt),
+    stroke: (left: 1pt, top: none, right: none, bottom: none),
+    table.cell(
+      inset: (left: 8pt, bottom: 8pt),
+      { text(20pt, "MATH1023 Homework, " + part); h(1fr) }
+    ),
+    table.hline(),
+    text(14pt, "Roman Maksimovich, ID: 21098878"),
+    text(14pt, "Due date: " + due)
+  )
+
+  doc
+}
+
+#let math-problem(number) = underline(strong({
+  text("Exercise " + number + ".");
+  h(3pt)
+}))
+#let math-solution = { underline(emph("Solution:")); h(2pt) }
+
 #let title(
   downstep: 0pt,
   title,
