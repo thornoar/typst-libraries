@@ -112,6 +112,8 @@
     numbering: "1"
   )
   set text(size: 12pt)
+  set math.equation(supplement: "Formula", numbering: "(1)")
+  show: equate.with(sub-numbering: false, number-mode: "label")
 
   table(
     columns: 1,
