@@ -10,7 +10,7 @@
   supplement: auto,
   numbering: "1.1.",
   refnumbering: "1.1",
-  titlefmt: strong,
+  titlefmt: auto,
   namefmt: x => [ (#x):],
   bodyfmt: x => x,
   separator: h(0.2em),
@@ -26,7 +26,15 @@
     if (title == auto) { title = head }
     if (number != none) { title += " " + number }
 
-    title = titlefmt(title)
+    if (titlefmt == auto) {
+      if (numbering == none) {
+        title = [ *#title.* ]
+      } else {
+        title = strong(title)
+      }
+    } else {
+      title = titlefmt(title)
+    }
     body = bodyfmt(body)
 
     align(left, block(
